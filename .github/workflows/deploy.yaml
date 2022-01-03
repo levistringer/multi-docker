@@ -15,9 +15,9 @@ jobs:
       - run: docker run -e CI=true levistringer/react-test npm test
 
       - run: docker build -t levistringer/multi-client-10-14 ./client
-      - run: docker build -t levistringer/multi-client-10-14 ./nginx
-      - run: docker build -t levistriner/mutli-client-10-14 ./server
-      - run: docker build -t levistringer/multi-client-10-14 ./worker
+      - run: docker build -t levistringer/multi-nginx-10-14 ./nginx
+      - run: docker build -t levistriner/mutli-server-10-14 ./server
+      - run: docker build -t levistringer/multi-worker-10-14 ./worker
 
       - run: docker push levistringer/multi-client-10-14
       - run: docker push levistirnger/multi-nginx-10-14
