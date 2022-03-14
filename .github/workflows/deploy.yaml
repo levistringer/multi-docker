@@ -1,11 +1,11 @@
 name: Deploy Multi Docker
-on: 
-  push: 
-    branches: 
+on:
+  push:
+    branches:
       - master
 
-jobs: 
-  build:  
+jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,15 +20,15 @@ jobs:
 
       - run: docker push levistringer/multi-client-10-14
       - run: docker push levistringer/multi-nginx-10-14
-      - run: docker push levistringer/multi-server-10-14 
+      - run: docker push levistringer/multi-server-10-14
       - run: docker push levistringer/multi-worker-10-14
 
-      - name: Generate deployment package 
+      - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v18
-        with: 
+        uses: levistringer/beanstalk-deploy@v18
+        with:
           aws_access_key: ${{secrets.AWS_ACCESS_KEY}}
           aws_secret_key: ${{secrets.AWS_SECRET_KEY}}
           application_name: docker
